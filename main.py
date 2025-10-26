@@ -15,9 +15,11 @@ def main():
     # change settings here
     system: str = "sir"
     solver: str = "ie"
-    plot_states: tuple[int, ...] = (0, 1, 2)
-    plot_pairs: tuple[tuple[int, int], ...] = ()
+    plot_states: tuple[int, ...] = (0, 1, 2)     # plot states against time
+    plot_pairs: tuple[tuple[int, int], ...] = () # plot states against each other
     params = dict(
+        beta=0.40,
+        gamma=0.05
     )
 
     t_span: tuple[float, float] = (0.0, 100.0)
@@ -37,6 +39,12 @@ def main():
         plt.figure()
         for state in plot_states:
             plt.plot(t, y[:, state], label=labels[state])
+        plt.xlabel("t")
+        if len(plot_states) == 1:
+            plt.ylabel(labels[plot_states[0]])
+        else:
+            plt.ylabel("states")
+        plt.title(f"{system}: time-series")
         plt.legend()
         plt.grid(True)
         plt.tight_layout()
@@ -48,12 +56,13 @@ def main():
             plt.plot(y[:, i], y[:, j], label=f"{labels[i]} vs {labels[j]}")
             plt.xlabel(labels[i])
             plt.ylabel(labels[j])
+            plt.title(f"{system}: {labels[i]} vs {labels[j]}")
             plt.grid(True)
             plt.axis('equal')
-            plt.legend()
             plt.tight_layout()
 
     plt.show()
 
 if __name__ == '__main__':
+
     main()
