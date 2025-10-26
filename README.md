@@ -2,6 +2,8 @@
 
 This repository is a Python learning project focusing on simulating systems of ordinary differential equations (ODEs) using hand-written numerical solvers and a modular model interface. It is the Python twin of the original MATLAB project [ODEs-and-solvers](https://github.com/nonlinear-vibes/ODEs-and-solvers).
 
+![preview](docs/coupled_pendulums_preview.png)
+
 ## Contents:
 `solvers.py`:
 
