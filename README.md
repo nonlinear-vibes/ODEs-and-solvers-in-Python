@@ -24,7 +24,7 @@ $~~~~~~~~~~~~~~~~~~~~~~~~~$ tricky trajectories).
   
 - `num_jacobian` — Numerical Jacobian for the Newton-Rhapson iteration
 
-All solvers share the `solve(f, (t0, tf), y0, h) -> (t, Y)` same signature.
+All solvers share the same `solve(f, (t0, tf), y0, h) -> (t, Y)` signature.
 
 
 `models.py`:
@@ -39,7 +39,7 @@ All solvers share the `solve(f, (t0, tf), y0, h) -> (t, Y)` same signature.
 
 - `coupled_pendulums` — Coupled pendulums on a cart with damping, exhibiting spontaneous synchronization
 
-- `sir` — Simple Suscuptible-Infected-Recovered compartmental epidemic model
+- `sir` — Simple Susceptible-Infected-Recovered compartmental epidemic model
 
 Each model implements `f(t: float, y: ndarray) -> ndarray`, parameters can be overridden via `params = dict(...)` in `main.py`.
 
