@@ -84,6 +84,46 @@ def ee(
 
     return t, y
 
+# improved Euler/Heun
+def heun(
+    f: RHS,
+    t_span: tuple[float, float],
+    y0: ArrayLike,
+    h: float,
+) -> tuple[FloatArray, FloatArray]:
+    """
+    Heun's method (Improved Euler / Explicit Trapezoidal, 2nd order).
+
+    Parameters
+    ----------
+    f      : callable(t, y) -> dy/dt
+    t_span : (t0, tf)
+    y0     : array-like, initial state
+    h      : float, fixed step size (>0)
+
+    Returns
+    -------
+    t : ndarray, shape (n,)
+    y : ndarray, shape (n, m)
+    """
+    t0, tf = t_span
+    n = int(np.floor((tf - t0) / h)) + 1
+    t = np.linspace(t0, t0 + (n - 1) * h, n, dtype=float)
+
+    y0 = np.array(y0, dtype=float).reshape(-1)
+    m = y0.size
+    y = np.empty((n, m), dtype=float)
+    y[0, :] = y0
+
+    for k in range(n - 1):
+        tk, tkp1 = t[k], t[k + 1]
+        yk = y[k]
+        f1 = f(tk, yk)
+        y_pred = yk + h * f1
+        f2 = f(tkp1, y_pred)
+        y[k + 1] = yk + 0.5 * h * (f1 + f2)
+
+    return t, y
 
 # implicit/backward Euler
 def ie(
@@ -428,4 +468,5 @@ def _rkpair_fehlberg(
     K = np.column_stack((k1, k2, k3, k4, k5, k6))  # shape (m,6)
     y4 = y + h * (K @ b4)
     y5 = y + h * (K @ b5)
+
     return y4, y5
