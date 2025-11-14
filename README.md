@@ -9,16 +9,15 @@ This repository is a Python learning project focusing on simulating systems of o
 
 - `ee` — Explicit (forward) Euler
 
+- `heun` - Improved Euler (Heun)
+
 - `ie` — Implicit (backward) Euler
 
 - `trap` — Implicit trapezoidal rule (Crank–Nicolson)
 
 - `rk4` — Classic 4th-order Runge–Kutta
 
-- `rk45` — Runge–Kutta–Fehlberg 4(5) with adaptive steps <br />
-$~~~~~~~~~~~~~~~~~~~~~~~~~$ Sharp tolerances: per-component absolute and relative tests must both pass. <br />
-$~~~~~~~~~~~~~~~~~~~~~~~~~$ Propagate either the 5th-order state (standard) or the 4th-order state (often a bit more robust on <br />
-$~~~~~~~~~~~~~~~~~~~~~~~~~$ tricky trajectories).
+- `rk45` — Runge–Kutta–Fehlberg 4(5) with adaptive steps
 
 - `newton_it` — Newton-Rhapson iteration for implicit methods
   
